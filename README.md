@@ -19,8 +19,6 @@
 
 ![image](https://github.com/NguyennThinh/FindJob/assets/93363922/a264ec3a-37c4-4832-a4c6-2dfb4720f3ac)
 
-https://firebasestorage.googleapis.com/v0/b/funix-way.appspot.com/o/CCDN%2FPRJ321x.3.0.VN%2FASM%2FASM2_Hinh22.png?alt=media&token=951f1cc4-011f-43bd-8905-7f3a8a35eeb0
-
 ![image](https://github.com/NguyennThinh/FindJob/assets/93363922/17107b89-6cf9-4c0d-af6f-a189e5039c01)
 
 ![image](https://github.com/NguyennThinh/FindJob/assets/93363922/aa5b7e82-07de-4bf9-a041-c7cb91f832d2)

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Work CV</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/open-iconic-bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/css/animate.css">
+  <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="/assets/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="/assets/css/magnific-popup.css">
+<link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
+<link rel="stylesheet" href="/assets/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="/assets/css/aos.css">
+<link rel="stylesheet" href="/assets/css/ionicons.min.css">
+<link rel="stylesheet" href="/assets/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="/assets/css/jquery.timepicker.css">
+<link rel="stylesheet" href="/assets/css/css/bootstrap-reboot.css">
+<link rel="stylesheet" href="/assets/css/css/mixins/_text-hide.css">
+<link rel="stylesheet" href="/assets/css/flaticon.css">
+<link rel="stylesheet" href="/assets/css/icomoon.css">
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/bootstrap/bootstrap-grid.css">
+<link rel="stylesheet" href="/assets/css/bootstrap/bootstrap-reboot.css">
+
+<!-- JS -->
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/jquery-migrate-3.0.1.min.js"></script>
+<script src="/assets/js/popper.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/jquery.easing.1.3.js"></script>
+<script src="/assets/js/jquery.waypoints.min.js"></script>
+<script src="/assets/js/jquery.stellar.min.js"></script>
+<script src="/assets/js/owl.carousel.min.js"></script>
+<script src="/assets/js/jquery.magnific-popup.min.js"></script>
+<script src="/assets/js/aos.js"></script>
+<script src="/assets/js/jquery.animateNumber.min.js"></script>
+<script src="/assets/js/scrollax.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+<script src="/assets/js/google-map.js"></script>
+<script src="/assets/js/main.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/29.0.0/classic/ckeditor.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+
+<body>
+<nav  class="header_menu navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container-fluid px-md-4	">
+        <a class="navbar-brand" href="/">Work CV</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu"></span> Menu
+        </button>
+    </div>
+</nav>
+
+
+
+<div class="hero-wrap hero-wrap-2"  th:style="'background-image: url('+ @{/assets/images/bg_1.jpg} + ');'"  data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-start">
+            <div class="col-md-12 text-center mb-5">
+                <h1 class="mb-3 bread">Hồ sơ </h1>
+                <div class="form-group">
+
+                    <label class="btn btn-primary btn-md btn-file">
+                        Chọn ảnh<input type="file" name="file" id="fileUpload" hidden>
+                    </label>
+
+                </div>
+                <div style="margin-left: 0px" id="divImage" >
+                    <div class="form-group">
+                        <div class="form-group">
+                    <img id="u_avatar" height="100" width="100" style="border-radius: 50px" th:src= "${user?.image}? @{${'/assets/images/'+user?.image}}:'https://i.pinimg.com/550x/75/ef/da/75efda7e3c4fe52cfbe4036b8f6cde04.jpg'">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- HOME -->
+
+<section th:if="${ user?.role?.idRole == 1}" class="site-section" style="margin-top: 10px">
+    <div class="container">
+        <form enctype="multipart/form-data">
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-8 ">
+                    <div class="d-flex align-items-center">
+                        <div class="form-group" style="margin-top: 15px">
+                            <label class="btn btn-primary btn-md btn-file">
+                                Chọn cv (pdf)<input type="file" name="file" id="fileUpload1" required hidden>
+                            </label>
+                        </div>
+                    </div>
+                    <p id="cvName"  th:text="${user?.cv != null ? user?.cv?.fileName :'Chưa cập nhập'}"></p>
+
+                    <a style="color: red;margin-left: 20px" th:if="${user?.cv !=null}" data-toggle="modal" data-target="#exampleModal" >Xóa cv</a>
+<!--                    <a style="color: red;margin-left: 20px" th:if="${user?.cv ==null}" id="xoa" data-toggle="modal" data-target="#exampleModal" ></a>-->
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="row">
+
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <form action="/user/update-profile" method="post" >
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-8 mb-4 mb-lg-0">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <h2>Cập nhật thông tin</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="row">
+
+                        <div class="col-6">
+                            <button type="submit" class="btn btn-block btn-primary btn-md">Lưu thông tin</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-5">
+                <div class="col-lg-12">
+                    <div class="p-4 p-md-5 border rounded" method="post">
+                        <h3 class="text-black mb-5 border-bottom pb-2">Thông tin chi tiết</h3>
+                        <input type="hidden" name="idUser" th:value="${user?.idUser}">
+                        <div class="form-group">
+                            <label >Email</label>
+                            <input type="email" class="form-control" id="email" name="email" th:value="${user?.email != null ? user?.email : null}" required placeholder="you@yourdomain.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="job-title">Full name</label>
+
+                            <input type="text" class="form-control" name="fullName" th:value="${user?.fullName != null ? user?.fullName : null}" required id="job-title" placeholder="Full name">
+                        </div>
+                        <div class="form-group">
+                            <label for="job-location">Địa chỉ</label>
+                            <input type="text" name="address" th:value="${user?.address != null ? user?.address : null}" class="form-control" id="job-location" required placeholder="e.g. New York">
+                        </div>
+                        <div class="form-group">
+                            <label for="job-location">Số điện thoại</label>
+                            <input type="text" name="phoneNumber" th:value="${user?.phoneNumber != null ? user?.phoneNumber : null}" class="form-control" id="job-location" required placeholder="+ 84">
+                        </div>
+                        <div class="form-group">
+                            <label for="job-location">Mô tả bản thân</label>
+                            <textarea  name="description" th:text="${user?.description != null ? user?.description : null}" class="form-control" id="editor" placeholder="Mô tả"></textarea>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </form>
+    </div>
+</section>
+<!-- Modal -->
+<div class="modal fade"  id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Bạn có chắc chắn muốn xóa ?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Cv : <span id="cvXoa" ></span>
+                <span th:if="${Cv != null}" th:text="${Cv.fileName}"></span>
+                <form action="/user/deleteCv" method="post">
+                    <div class="modal-footer mt-1">
+                        <input type="hidden"  name="idCv">
+                        <button type="submit" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-danger">Xóa</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+        <div th:if="${result}" class="toast" data-delay="2000" style="position:fixed;top: 100PX; right: 10PX;z-index: 2000;width: 300px">
+            <script>
+                swal({
+                    title: 'Lưu thông tin thành công',
+                    /* text: 'Redirecting...', */
+                    icon: 'success',
+                    timer: 3000,
+                    buttons: true,
+                    type: 'success'
+                })
+            </script>
+        </div>
+    </div>
+</div>
+<script>
+    ClassicEditor.create(document.querySelector('#editor')).then(eidt => {
+        console.log("da" + eidt);
+    })
+        .catch(error => {
+            console.error(error);
+        });
+    ClassicEditor.create(document.querySelector('#editorN')).then(eidt => {
+        console.log("da" + eidt);
+    })
+        .catch(error => {
+            console.error(error);
+        });
+</script>
+<script>
+    function  showImageThumbnail(fileInput){
+        file = fileInput.files[0];
+
+        reader = new FileReader();
+
+        reader.onload = function (e){
+            $('#u_avatar').attr('src', e.target.result)
+        }
+        reader.readAsDataURL(file)
+    }
+
+
+    function  uploadImage(fileInput){
+        file = fileInput.files[0];
+        var formData = new FormData();
+
+        formData.append("type", "image-user");
+        formData.append("file", file);
+        formData.append("email", $("#email").val());
+
+        $.ajax({
+            type:'POST',
+            url: '/profile/upload-image',
+            data:formData,
+            cache:false,
+            contentType: false,
+            processData: false,
+            success:function(data){
+                console.log("success");
+                console.log(data);
+                swal({
+                    title: 'Cập nhật ảnh thành công !',
+                    /* text: 'Redirecting...', */
+                    icon: 'success',
+                    timer: 3000,
+                    buttons: true,
+                    type: 'success'
+                })
+            },
+            error: function(data){
+                console.log("error");
+                console.log(data);
+
+                swal({
+                    title: 'Cập nhật ảnh thất bại !',
+                    /* text: 'Redirecting...', */
+                    icon: 'error',
+                    timer: 3000,
+                    buttons: true,
+                    type: 'success'
+                })
+            }
+        });
+
+    }
+
+    $(document).ready(function (){
+
+
+        $('#fileUpload').change(function (){
+
+            uploadImage(this);
+            showImageThumbnail(this);
+
+
+
+        });
+    })
+
+
+</script>
+
+
+
+<script>
+    function  showNameCV(fileInput){
+        file = fileInput.files[0];
+
+        reader = new FileReader();
+
+        reader.onload = function (e){
+            $('#cvName').attr('src', file.name)
+        }
+        reader.readAsDataURL(file)
+    }
+
+
+    function  uploadPdf(fileInput){
+        file = fileInput.files[0];
+        var formData = new FormData();
+
+        formData.append("file", file);
+        formData.append("email", $("#email").val());
+
+        $.ajax({
+            type:'POST',
+            url: '/profile/upload-cv',
+            data:formData,
+            cache:false,
+            contentType: false,
+            processData: false,
+            success:function(data){
+                console.log("success");
+                console.log(data);
+                swal({
+                    title: 'Cập nhật cv thành công!',
+                    /* text: 'Redirecting...', */
+                    icon: 'success',
+                    timer: 3000,
+                    buttons: true,
+                    type: 'success'
+                })
+            },
+            error: function(data){
+                console.log("error");
+                console.log(data);
+                swal({
+                    title: 'Cập nhật cv thất bại !',
+                    /* text: 'Redirecting...', */
+                    icon: 'error',
+                    timer: 3000,
+                    buttons: true,
+                    type: 'success'
+                })
+            }
+        });
+
+    }
+
+    $(document).ready(function (){
+        $('#fileUpload1').change(function (){
+            showNameCV(this);
+            uploadPdf(this);
+
+
+
+
+        });
+    })
+
+
+</script>
+
+</body>
+</html>

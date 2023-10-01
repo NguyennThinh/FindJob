@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Work CV</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/open-iconic-bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/css/animate.css">
+  <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="/assets/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="/assets/css/magnific-popup.css">
+<link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
+<link rel="stylesheet" href="/assets/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="/assets/css/aos.css">
+<link rel="stylesheet" href="/assets/css/ionicons.min.css">
+<link rel="stylesheet" href="/assets/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="/assets/css/jquery.timepicker.css">
+<link rel="stylesheet" href="/assets/css/css/bootstrap-reboot.css">
+<link rel="stylesheet" href="/assets/css/css/mixins/_text-hide.css">
+<link rel="stylesheet" href="/assets/css/flaticon.css">
+<link rel="stylesheet" href="/assets/css/icomoon.css">
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/bootstrap/bootstrap-grid.css">
+<link rel="stylesheet" href="/assets/css/bootstrap/bootstrap-reboot.css">
+
+<!-- JS -->
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/jquery-migrate-3.0.1.min.js"></script>
+<script src="/assets/js/popper.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/jquery.easing.1.3.js"></script>
+<script src="/assets/js/jquery.waypoints.min.js"></script>
+<script src="/assets/js/jquery.stellar.min.js"></script>
+<script src="/assets/js/owl.carousel.min.js"></script>
+<script src="/assets/js/jquery.magnific-popup.min.js"></script>
+<script src="/assets/js/aos.js"></script>
+<script src="/assets/js/jquery.animateNumber.min.js"></script>
+<script src="/assets/js/scrollax.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+<script src="/assets/js/google-map.js"></script>
+<script src="/assets/js/main.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/29.0.0/classic/ckeditor.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+
+<body>
+<nav  class="header_menu navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container-fluid px-md-4	">
+        <a class="navbar-brand" href="/">Work CV</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu"></span> Menu
+        </button>
+    </div>
+</nav>
+
+
+
+<div class="hero-wrap hero-wrap-2"  th:style="'background-image: url('+ @{/assets/images/bg_1.jpg} + ');'"  data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-start">
+            <div class="col-md-12 text-center mb-5">
+                <h1 class="mb-3 bread">Hồ sơ </h1>
+                <div class="form-group">
+
+                    <label class="btn btn-primary btn-md btn-file">
+                        Chọn ảnh<input type="file" name="file" id="fileUpload" hidden>
+                    </label>
+
+                </div>
+                <div style="margin-left: 0px" id="divImage" >
+                    <div class="form-group">
+                        <div class="form-group">
+                    <img id="u_avatar" height="100" width="100" style="border-radius: 50px" th:src= "${user?.image}? @{${'/assets/images/'+user?.image}}:'https://i.pinimg.com/550x/75/ef/da/75efda7e3c4fe52cfbe4036b8f6cde04.jpg'">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- HOME -->
+
+<section th:if="${ user?.role?.idRole == 2}" class="site-section" style="margin-top: 10px">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mb-5">
+                <h2 class="mb-4">Thông tin cá nhân</h2>
+                <form action="/user/update-profile" name="user" method="post" >
+
+                    <div class="row mb-5">
+                        <div class="col-lg-12">
+                            <div class="p-4 p-md-5 border rounded" method="post">
+
+                                <input type="hidden" class="form-control" id="idUser" name="idUser" th:value="${user?.idUser}">
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" th:value="${user?.email}" required placeholder="you@yourdomain.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="job-title">Họ và tên</label>
+                                    <input type="text" class="form-control" name="fullName" th:value="${user?.fullName}" id="job-title" required placeholder="Full name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="job-location">Địa chỉ</label>
+                                    <input type="text" name="address" th:value="${user?.address != null ? user?.address : null}" required class="form-control" id="job-location" placeholder="e.g. New York">
+                                </div>
+                                <div class="form-group">
+                                    <label for="job-location">Số điện thoại</label>
+                                    <input type="text" name="phoneNumber" th:value="${user?.phoneNumber != null ? user?.phoneNumber : null}" required class="form-control" id="job-location" placeholder="+ 84">
+                                </div>
+                                <div class="form-group">
+                                    <label for="job-location">Mô tả bản thân</label>
+                                    <textarea  name="description" th:text="${user?.description != null ? user?.description : null}" class="form-control" id="editor" placeholder="Mô tả"></textarea>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-md-12">
+                                        <input type="submit" value="Lưu thông tin" class="btn px-4 btn-primary text-white">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-6">
+                <h2 class="mb-4">Thông tin công ty</h2>
+                <div class="form-group">
+                    <label >Cập nhật Logo</label> <br>
+                    <label class="btn btn-primary btn-md btn-file">
+                        Chọn logo<input type="file" name="file" id="logoUpload" required hidden>
+                    </label>
+                    <div id="divLogo">
+                        <img id="logo" height="100" width="100" style="border-radius: 50px" th:src="${user?.company?.logo}? @{${'/assets/images/'+user?.company?.logo}}:'https://www.consoft.vn/uploads/products/25709_lumenrt_connectedition_icon.png'">
+                    </div>
+                </div>
+                <form action="/user/update-company" name="company" method="post"  >
+
+                    <div class="row mb-5">
+                        <div class="col-lg-12">
+                            <div class="p-4 p-md-5 border rounded" method="post">
+                                <input type="hidden" class="form-control"  id="user_id" name="idUser" th:value="${user.idUser} " >
+                                <input type="hidden" class="form-control"  id="id" name="idCompany" th:value="${user.company?.idCompany} " >
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+
+                                    <input type="text" class="form-control" required id="email1" name="email" th:value="${user.company?.email} ? ${user.company?.email} : null " placeholder="you@yourdomain.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="job-title">Tên công ty</label>
+                                    <input type="text" class="form-control" name="companyName" th:value="${user.company?.companyName != null ? user.company?.companyName : null }" id="job-title"  placeholder="Full name" required>
+<!--                                    <input type="hidden" class="form-control" name="user_id" th:value="${user.company.user.id != null ? user.company.user.id : null}" id="job-title" placeholder="Full name">-->
+                                    <input type="hidden" class="form-control" name="id" th:value="${user.company?.idCompany !=null ? user.company?.idCompany : null}" id="job-title" placeholder="Full name">
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="job-location">Địa chỉ</label>
+                                    <input type="text" name="address" th:value="${user.company?.address != null ? user.company?.address : null}" required class="form-control" id="job-location" placeholder="e.g. New York">
+                                </div>
+                                <div class="form-group">
+                                    <label for="job-location">Số điện thoại công ty</label>
+                                    <input type="text" name="phoneNumber" th:value="${user.company?.phoneNumber != null ? user.company?.phoneNumber : null}" required class="form-control" id="job-location" placeholder="+ 84">
+                                </div>
+                                <div class="form-group">
+                                    <label for="job-location">Mô tả công ty</label>
+                                    <textarea  name="description" th:text="${user.company?.description != null ? user.company?.description : null}"  class="form-control" id="editorN" placeholder="Mô tả"></textarea>
+                                </div>
+
+                                <div class="row form-group" >
+                                    <div class="col-md-12">
+                                        <input type="submit" value="Lưu thông tin" class="btn px-4 btn-primary text-white">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+        <div th:if="${result}" class="toast" data-delay="2000" style="position:fixed;top: 100PX; right: 10PX;z-index: 2000;width: 300px">
+            <script>
+                swal({
+                    title: 'Lưu thông tin thành công',
+                    /* text: 'Redirecting...', */
+                    icon: 'success',
+                    timer: 3000,
+                    buttons: true,
+                    type: 'success'
+                })
+            </script>
+        </div>
+    </div>
+</div>
+<script>
+    ClassicEditor.create(document.querySelector('#editor')).then(eidt => {
+        console.log("da" + eidt);
+    })
+        .catch(error => {
+            console.error(error);
+        });
+    ClassicEditor.create(document.querySelector('#editorN')).then(eidt => {
+        console.log("da" + eidt);
+    })
+        .catch(error => {
+            console.error(error);
+        });
+</script>
+<script>
+    function  showImageThumbnail(fileInput){
+        file = fileInput.files[0];
+
+        reader = new FileReader();
+
+        reader.onload = function (e){
+            $('#u_avatar').attr('src', e.target.result)
+        }
+        reader.readAsDataURL(file)
+    }
+
+
+    function  uploadImage(fileInput){
+        file = fileInput.files[0];
+        var formData = new FormData();
+
+        formData.append("type", "image-user");
+        formData.append("file", file);
+        formData.append("email", $("#email").val());
+
+        $.ajax({
+            type:'POST',
+            url: '/profile/upload-image',
+            data:formData,
+            cache:false,
+            contentType: false,
+            processData: false,
+            success:function(data){
+                console.log("success");
+                console.log(data);
+                swal({
+                    title: 'Cập nhật ảnh thành công !',
+                    /* text: 'Redirecting...', */
+                    icon: 'success',
+                    timer: 3000,
+                    buttons: true,
+                    type: 'success'
+                })
+            },
+            error: function(data){
+                console.log("error");
+                console.log(data);
+
+                swal({
+                    title: 'Cập nhật ảnh thất bại !',
+                    /* text: 'Redirecting...', */
+                    icon: 'error',
+                    timer: 3000,
+                    buttons: true,
+                    type: 'success'
+                })
+            }
+        });
+
+    }
+
+    $(document).ready(function (){
+
+
+        $('#fileUpload').change(function (){
+
+            uploadImage(this);
+            showImageThumbnail(this);
+
+
+
+        });
+    })
+
+
+</script>
+
+
+<script>
+    function  showLogo(fileInput){
+        file = fileInput.files[0];
+
+        reader = new FileReader();
+
+        reader.onload = function (e){
+            $('#logo').attr('src', e.target.result)
+        }
+        reader.readAsDataURL(file)
+    }
+
+
+    function  uploadLogo(fileInput){
+        file = fileInput.files[0];
+        var formData = new FormData();
+
+        formData.append("type", "logo");
+        formData.append("file", file);
+        formData.append("email", $("#email1").val());
+
+        $.ajax({
+            type:'POST',
+            url: '/profile/upload-image',
+            data:formData,
+            cache:false,
+            contentType: false,
+            processData: false,
+            success:function(data){
+                console.log("success");
+                console.log(data);
+                swal({
+                    title: 'Cập nhật logo thành công!',
+                    /* text: 'Redirecting...', */
+                    icon: 'success',
+                    timer: 3000,
+                    buttons: true,
+                    type: 'success'
+                })
+            },
+            error: function(data){
+                console.log("error");
+                console.log(data);
+                swal({
+                    title: 'Bạn có công ty, cập nhật thất bại!',
+                    /* text: 'Redirecting...', */
+                    icon: 'error',
+                    timer: 3000,
+                    buttons: true,
+                    type: 'success'
+                })
+            }
+        });
+
+    }
+
+    $(document).ready(function (){
+        $('#logoUpload').change(function (){
+
+            uploadLogo(this);
+            showLogo(this);
+
+
+
+        });
+    })
+</script>
+
+
+
+</body>
+</html>
